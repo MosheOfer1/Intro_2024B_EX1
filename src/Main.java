@@ -1,5 +1,3 @@
-package mainPackage;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

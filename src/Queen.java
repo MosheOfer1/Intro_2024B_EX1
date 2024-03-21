@@ -1,5 +1,3 @@
-package mainPackage;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -10,8 +8,6 @@ import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
 
-import static mainPackage.Logic.bord;
-import static mainPackage.Main.bord_size;
 
 //the queen class
 public class Queen extends JComponent {
@@ -68,7 +64,7 @@ public class Queen extends JComponent {
 
                 // Release the spot on the bord
                 if (inSquare>-1){
-                    bord[inSquare / bord_size][inSquare % bord_size] = false;
+                    Logic.bord[inSquare / Main.bord_size][inSquare % Main.bord_size] = false;
                 }
 
             }
@@ -92,7 +88,7 @@ public class Queen extends JComponent {
             public void mouseDragged(MouseEvent e) {
                 //if the user clicked and then dragged
                 if (queenClicked !=-1){
-                    for (int i = 0; i < bord_size; i++) {
+                    for (int i = 0; i < Main.bord_size; i++) {
                         Main.queens[i].drawQueen(queenImg);
                     }
                     queenClicked = -1;
@@ -166,11 +162,11 @@ public class Queen extends JComponent {
     }
 
     private boolean illegalMove(int index) {
-        return !Logic.checkBoard(index/bord_size,index%bord_size, bord);
+        return !Logic.checkBoard(index/ Main.bord_size,index% Main.bord_size, Logic.bord);
     }
 
     public static boolean emptySquare(int index) {
-        for (int i = 0; i < bord_size; i++) {
+        for (int i = 0; i < Main.bord_size; i++) {
             if(Main.queens[i].getInSquare() == index){
                 return false;
             }

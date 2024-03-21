@@ -1,13 +1,9 @@
-package mainPackage;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.stream.Stream;
-import static mainPackage.Logic.*;
-import static mainPackage.Main.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LogicTest {
@@ -19,7 +15,7 @@ class LogicTest {
         System.setOut(new PrintStream(outputStreamCaptor));
 
         // Act
-        printBoard(board);
+        Logic.printBoard(board);
 
         // Assert
         assertEquals(expectedOutput, outputStreamCaptor.toString().replace("\r",""));
@@ -84,7 +80,7 @@ class LogicTest {
                 {false, false, false, false, false, false, false, false},
                 {false, false, false, false, false, false, false, false}
         };
-        assertTrue(checkBoard(0, 0, board));
+        assertTrue(Logic.checkBoard(0, 0, board));
     }
 
     @Test
@@ -99,8 +95,8 @@ class LogicTest {
                 {false, false, false, false, false, false, false, false},
                 {false, false, false, false, false, false, false, false}
         };
-        assertFalse(checkBoard(2, 3, board)); // Conflict in row and column
-        assertFalse(checkDiagonals(2, 1, board));
+        assertFalse(Logic.checkBoard(2, 3, board)); // Conflict in row and column
+        assertFalse(Logic.checkDiagonals(2, 1, board));
 
     }
 
@@ -116,33 +112,33 @@ class LogicTest {
                 {false, false, false, false, false, false, false, false},
                 {false, false, false, false, false, false, false, false}
         };
-        assertFalse(checkDiagonals(2, 1, board));
-        assertFalse(checkDiagonals(4, 3, board));
+        assertFalse(Logic.checkDiagonals(2, 1, board));
+        assertFalse(Logic.checkDiagonals(4, 3, board));
     }
 
 
 
     @Test
     void testCountSolutions() {
-        Queen[] queens = new Queen[bord_size];
+        Queen[] queens = new Queen[Main.bord_size];
         for (int i = 0; i < 8; i++)
             queens[i] = new Queen(i);
-        assertEquals(92, countSolutions(queens));
+        assertEquals(92, Logic.countSolutions(queens));
     }
     @Test
     void testCountSolutionsWithQueenInASquare1() {
-        Queen[] queens = new Queen[bord_size];
+        Queen[] queens = new Queen[Main.bord_size];
         for (int i = 0; i < 8; i++)
             queens[i] = new Queen(i);
         queens[0].setInSquare(0);
-        assertEquals(4, countSolutions(queens));
+        assertEquals(4, Logic.countSolutions(queens));
     }
     @Test
     void testCountSolutionsWithQueenInASquare2() {
-        Queen[] queens = new Queen[bord_size];
+        Queen[] queens = new Queen[Main.bord_size];
         for (int i = 0; i < 8; i++)
             queens[i] = new Queen(i);
         queens[0].setInSquare(54);
-        assertEquals(16, countSolutions(queens));
+        assertEquals(16, Logic.countSolutions(queens));
     }
 }
