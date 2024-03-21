@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Moshe Ofer 2024.
+ */
+
 public class Logic {
 
     public static int solutionsCounter = 0;

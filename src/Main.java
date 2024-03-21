@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Moshe Ofer 2024.
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

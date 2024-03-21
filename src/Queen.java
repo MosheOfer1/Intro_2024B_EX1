@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Moshe Ofer 2024.
+ */
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
