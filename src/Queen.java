@@ -9,7 +9,10 @@ import java.io.File;
 import java.io.IOException;
 
 
-//the queen class
+/*
+    The queen class
+    NO CHANGES NEEDED HERE AT ALL!
+ */
 public class Queen extends JComponent {
     private volatile int screenX = 0;
     private volatile int screenY = 0;

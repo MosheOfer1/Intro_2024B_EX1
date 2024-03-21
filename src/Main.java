@@ -3,7 +3,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+    The Main class
+    NO CHANGES NEEDED HERE AT ALL!
+ */
 public class Main {
     public static final int bord_size = 8;
     public static List<Object> fields = new ArrayList<>();
