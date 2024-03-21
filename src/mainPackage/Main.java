@@ -9,7 +9,7 @@ import java.util.List;
 public class Main {
     public static final int bord_size = 8;
     public static List<Object> fields = new ArrayList<>();
-    public static Queen[] queens = new Queen[8];
+    public static Queen[] queens = new Queen[bord_size];
     public static int SQUARE_SIZE = 65;
     public static int numberOfSolutions;
     public static JFrame frame = new JFrame();
@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
         //creating 8 queens on the board
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < bord_size; i++) {
             queens[i] = new Queen(i);
             queens[i].setBounds(700, 520 - (i * SQUARE_SIZE), (int) (0.6 * SQUARE_SIZE), (int) (0.6 * SQUARE_SIZE));
             frame.add(queens[i]);
@@ -37,8 +37,8 @@ public class Main {
 
         // Creating the board with 64 JButtons
         int fieldCounter = 0;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < bord_size; i++) {
+            for (int j = 0; j < bord_size; j++) {
                 fields.add(fieldCounter, new JButton());
                 ((JButton) fields.get(fieldCounter)).setBounds(50 + (SQUARE_SIZE * j), 50 + (SQUARE_SIZE * i), SQUARE_SIZE, SQUARE_SIZE);
                 if ((i + j) % 2 == 0) ((JButton) fields.get(fieldCounter)).setBackground(new Color(152, 102, 0));

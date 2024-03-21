@@ -9,20 +9,20 @@ public class Logic {
 
 
     // A recursive function for putting 8 queens on the chess board, in a way that no one can eat anyone else
-    public static void placeQueensRecursive(int raw, boolean[][] bord) {
-        // Exit condition, if it has reached to the last raw on the board
-        if (raw == bord_size){
+    public static void placeQueensRecursive(int column, boolean[][] bord) {
+        // Exit condition, if it has reached to the last column on the board
+        if (column == bord_size){
             solutionsCounter++;
             //printBoard();
             return;
         }
 
-        // If you have reached to not an empty raw, check for contradictions,
-        // and if all good send to the next raw, else return.
+        // If you have reached to not an empty column, check for contradictions,
+        // and if all good send to the next column, else return.
         for (int i = 0; i < bord_size; i++) {
-            if (bord[i][raw]) {
-                if (checkBoard(i, raw, bord)) {
-                    placeQueensRecursive(raw + 1, bord);
+            if (bord[i][column]) {
+                if (checkBoard(i, column, bord)) {
+                    placeQueensRecursive(column + 1, bord);
                 } else {
                     return;
                 }
@@ -30,49 +30,49 @@ public class Logic {
         }
 
         for (int i = 0; i < bord_size; i++) {
-            if (checkBoard(i,raw, bord) && !bord[i][raw]) {
-                bord[i][raw] = true;
-                placeQueensRecursive(raw + 1, bord);
-                bord[i][raw] = false;
+            if (checkBoard(i, column, bord) && !bord[i][column]) {
+                bord[i][column] = true;
+                placeQueensRecursive(column + 1, bord);
+                bord[i][column] = false;
             }
         }
     }
 
     // Return true if no one can eat anyone else
-    public static boolean checkBoard(int line, int raw, boolean[][] bord) {
-        //raw
-        for (int i = 0; i < bord_size; i++) {
-            if (bord[line][i] && i!=raw){
-                return false;
-            }
-        }
-
+    public static boolean checkBoard(int raw, int column, boolean[][] bord) {
         //column
         for (int i = 0; i < bord_size; i++) {
-            if (bord[i][raw] && i!=line){
+            if (bord[raw][i] && i!=column){
                 return false;
             }
         }
 
-        return checkDiagonals(line, raw, bord);
+        //raw
+        for (int i = 0; i < bord_size; i++) {
+            if (bord[i][column] && i!=raw){
+                return false;
+            }
+        }
+
+        return checkDiagonals(raw, column, bord);
     }
 
-    public static boolean checkDiagonals(int column, int raw, boolean[][] bord){
-        int d = bord_size - 1 - Math.max(column,raw);
-        int x = raw + d;
-        int y = column + d;
+    public static boolean checkDiagonals(int raw, int column, boolean[][] bord){
+        int d = bord_size - 1 - Math.max(raw, column);
+        int x = column + d;
+        int y = raw + d;
         while (x >= 0 && y >= 0){
-            if (bord[y][x] && x!=raw){
+            if (bord[y][x] && x!=column){
                 return false;
             }
             x--;
             y--;
         }
 
-        x = raw - Math.min(raw,bord_size - 1 - column);
-        y = column + Math.min(raw,bord_size - 1 - column);
+        x = column - Math.min(column,bord_size - 1 - raw);
+        y = raw + Math.min(column,bord_size - 1 - raw);
         while (x <= bord_size - 1 && y >= 0){
-            if (bord[y][x] && x!=raw){
+            if (bord[y][x] && x!=column){
                 return false;
             }
             x++;
